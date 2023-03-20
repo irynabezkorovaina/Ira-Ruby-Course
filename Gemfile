@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'capybara'
+gem 'require_all'
 gem 'rspec'
 gem 'selenium-webdriver'
-gem 'factory_bot'
+gem 'site_prism'
