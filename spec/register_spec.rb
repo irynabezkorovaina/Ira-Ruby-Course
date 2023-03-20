@@ -1,25 +1,32 @@
 
-feature 'User register', js: true do
-	
-	let!(:timestamp) {Time.now.to_i.to_s}
-	let!(:email) {"test" + timestamp + "@gmail.com"}
-	let!(:user_name) {"test" + timestamp}
+feature 'User registration', js: true do
+  scenario 'User can register to the system' do
+    @register_page = RegisterPage.new
+    @register_page.load
 
-	scenario 'User can register in the system' do
-		visit('https://gitlab.testautomate.me/')
+    user_name = "test#{SecureRandom.uuid}"
 
-		find('[data-qa-selector="register_link"]').click
-		find('#new_user_first_name').set 'test'
-		find('#new_user_last_name').set 'user'
-		find('#new_user_username').set user_name
-		find('#new_user_email').set email
-		find('#new_user_password').set 'testuser123'
-		find('[data-qa-selector="new_user_register_button"]').click
-		select('Software Developer', from: "Role")
-		select('I want to store my code', from: "I'm signing up for GitLab because:")
-		find('[data-qa-selector="get_started_button"]').click
+    @register_page.first_name_field.set 'test'
+    @register_page.last_name_field.set 'user'
+    @register_page.username_field.set user_name
 
-		expect(page).to have_content('Welcome to GitLab') 
+    expect(page).to have_selector '.validation-success.field-validation'
 
-	end
+    @register_page.email_field.set "#{user_name}@example.com"
+    @register_page.password_field.set 'testuser123'
+    @register_page.register_button.click
+
+    @register_page.role_field.select('Software Developer')
+    @register_page.registration_objective_field.select('I want to store my code')
+    @register_page.different_reason_field.set 'Whatever reason' if @register_page.has_different_reason_field?(visible: true)
+    @register_page.get_started_button.click
+
+    expect(page).to have_content 'Welcome to GitLab'
+
+    @home_page = HomePage.new
+    @home_page.menu.user_picture.click
+
+    expect(@home_page.menu.user_name).to have_content 'test user'
+
+  end
 end
