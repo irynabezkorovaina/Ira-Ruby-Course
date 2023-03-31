@@ -1,0 +1,14 @@
+detectors:
+  UtilityFunction:
+    exclude:
+      - 'chrome_options'
+  IrresponsibleModule:
+    exclude:
+      - 'HomePage'
+      - 'LoginPage'
+      - 'RegisterPage'
+      - 'Menu'
+  TooManyStatements:
+    max_statements: 20
+  TooManyInstanceVariables:
+    max_instance_variables: 5
