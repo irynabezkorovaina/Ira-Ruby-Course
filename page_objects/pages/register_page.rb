@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RegisterPage < SitePrism::Page
   set_url 'https://gitlab.testautomate.me/users/sign_up'
 
@@ -11,5 +13,4 @@ class RegisterPage < SitePrism::Page
   element :registration_objective_field, '#user_registration_objective'
   element :different_reason_field, '#jobs_to_be_done_other'
   element :get_started_button, '[data-qa-selector="get_started_button"]'
-
 end
