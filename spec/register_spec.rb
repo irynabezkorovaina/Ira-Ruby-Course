@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 
 feature 'User registration', js: true do
   scenario 'User can register to the system' do
@@ -11,6 +12,5 @@ feature 'User registration', js: true do
 
     expect(@home_page.menu.user_name).to have_content user.firstname
     expect(@home_page.menu.user_name).to have_content user.lastname
-
   end
 end
