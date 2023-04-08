@@ -7,7 +7,10 @@ detectors:
       - 'HomePage'
       - 'LoginPage'
       - 'RegisterPage'
-      - 'Menu'
+      - 'Menu'      
+  FeatureEnvy:
+    exclude:
+      - 'create_user_api'
   TooManyStatements:
     max_statements: 20
   TooManyInstanceVariables:
