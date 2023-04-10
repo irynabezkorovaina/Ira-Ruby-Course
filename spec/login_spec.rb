@@ -4,10 +4,12 @@ feature 'User login', js: true do
   scenario 'User can login to the system' do
     new_user = User.new
 
-    response = create_user_api new_user
+    response = create_user_api(new_user)
     user_id = JSON.parse(response.body)['id']
 
-    login_user new_user.username, new_user.password
+    save_user_credentials(new_user)
+
+    login_user(new_user.username, new_user.password)
     expect(page).to have_content 'Welcome to GitLab'
 
     @home_page = HomePage.new
