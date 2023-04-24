@@ -1,4 +1,4 @@
 .DS_Store
 .env
-.user_credentials.txt
+user_credentials.txt
 Gherkin/
