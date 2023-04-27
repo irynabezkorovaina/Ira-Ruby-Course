@@ -2,11 +2,6 @@
 
 # This module describes repeatable actions
 module Helpers
-  def save_user_credentials(user)
-    File.open('user_credentials.txt', 'w') do |file|
-      file.puts "#{user.username}, #{user.password}"
-    end
-  end
 
   def login_user(username, password)
     @login_page = LoginPage.new

@@ -2,3 +2,5 @@
 .env
 user_credentials.txt
 Gherkin/
+sublime-cucumber-completion/
+Cucumber/
