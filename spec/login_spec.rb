@@ -7,9 +7,7 @@ feature 'User login', js: true do
     response = create_user_api(new_user)
     user_id = JSON.parse(response.body)['id']
 
-    save_user_credentials(new_user)
-
-    login_user(new_user.username, new_user.password)
+    login_user new_user.username, new_user.password
     expect(page).to have_content 'Welcome to GitLab'
 
     @home_page = HomePage.new
