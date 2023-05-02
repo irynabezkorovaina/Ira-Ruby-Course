@@ -7,6 +7,9 @@ Style/Documentation:
 Style/MixinUsage:
   Exclude:
     - 'spec/spec_helper.rb'
+# Lint/UselessAssignment:
+#   Exclude:
+#     - 'Cucumber/**/*'
 Metrics/LineLength:
   Max: 120
 Metrics/MethodLength:
