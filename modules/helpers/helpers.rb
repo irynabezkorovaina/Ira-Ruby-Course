@@ -2,7 +2,6 @@
 
 # This module describes repeatable actions
 module Helpers
-
   def login_user(username, password)
     @login_page = LoginPage.new
     @login_page.load
@@ -30,5 +29,18 @@ module Helpers
     @register_page.registration_objective_field.select('I want to store my code')
     @register_page.different_reason_field.set 'Whatever' if @register_page.has_different_reason_field?(visible: true)
     @register_page.get_started_button.click
+  end
+
+  def project_name(_project_owner)
+    @blank_project_page = BlankProject.new
+    @blank_project_page.load
+
+    @blank_project_page.project_name_field.set "#{@project_owner.lastname}Project"
+    @blank_project_page.create_project_button.click
+  end
+
+  def logout_user
+    @home_page.menu.user_picture.click
+    @home_page.menu.menu_user_sign_out.click
   end
 end

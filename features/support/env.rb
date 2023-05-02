@@ -11,14 +11,14 @@ require_all 'page_objects/sections'
 require_all 'page_objects/pages'
 require_all 'modules'
 
-  def chrome_options
-    Selenium::WebDriver::Chrome::Options.new(args: %w[window-size=1800,1000])
-  end
+def chrome_options
+  Selenium::WebDriver::Chrome::Options.new(args: %w[window-size=1800,1000])
+end
 
-  Before do
+Before do
   Capybara.default_driver = :selenium
   Capybara.register_driver :selenium do |app|
-    Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options) 
+    Capybara::Selenium::Driver.new(app, browser: :chrome, options: chrome_options)
   end
 end
 

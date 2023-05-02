@@ -19,6 +19,15 @@ module ApiWrappers
     response
   end
 
+  def get_user_api(user)
+    response = RestClient.get "#{ENV['API_ROOT_URL']}/users?username=#{user.username}",
+                              { Authorization: ENV['API_TOKEN'] }
+
+    raise 'User was not found via API' unless response.code == 200
+
+    response
+  end
+
   def delete_user_api(id)
     response = RestClient.delete "#{ENV['API_ROOT_URL']}/users/#{id}?hard_delete=true",
                                  { Authorization: ENV['API_TOKEN'] }
